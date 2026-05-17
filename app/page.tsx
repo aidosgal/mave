@@ -16,8 +16,8 @@ export default function Home() {
       <StatsBar />
       <Services />
       <Differentiators />
-      <Doctors />
       <Cases />
+      <Doctors />
       <Testimonial />
       <CTA />
     </main>

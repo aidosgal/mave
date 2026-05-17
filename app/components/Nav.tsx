@@ -24,8 +24,8 @@ export default function Nav() {
         <Image
           src="/logo.png"
           alt="Mave Dental"
-          width={130}
-          height={44}
+          width={160}
+          height={54}
           style={{ width: "auto", height: "44px" }}
           priority
         />

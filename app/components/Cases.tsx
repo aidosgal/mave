@@ -14,6 +14,8 @@ const CASES = [
       { value: "10 лет", label: "гарантия" },
     ],
     accent: "#4F6EF7",
+    accentRgb: "79,110,247",
+    result: "Полное восстановление",
   },
   {
     id: "02",
@@ -26,7 +28,9 @@ const CASES = [
       { value: "2 визита", label: "весь процесс" },
       { value: "E1", label: "оттенок VITA" },
     ],
-    accent: "#00E5C3",
+    accent: "#F59E0B",
+    accentRgb: "245,158,11",
+    result: "Идеальная эстетика",
   },
   {
     id: "03",
@@ -39,11 +43,13 @@ const CASES = [
       { value: "14 мес", label: "курс лечения" },
       { value: "0", label: "видимых конструкций" },
     ],
-    accent: "#4F6EF7",
+    accent: "#8B5CF6",
+    accentRgb: "139,92,246",
+    result: "Ровный прикус",
   },
 ];
 
-function useScrollReveal(threshold = 0.15) {
+function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -69,8 +75,11 @@ function CaseCard({
   description,
   stats,
   accent,
-  delay,
-}: (typeof CASES)[number] & { delay: number }) {
+  accentRgb,
+  result,
+  index,
+  visible,
+}: (typeof CASES)[number] & { index: number; visible: boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -79,67 +88,200 @@ function CaseCard({
       onMouseLeave={() => setHovered(false)}
       style={{
         background: "#ffffff",
-        border: `1px solid ${hovered ? accent : "#E8E7E3"}`,
-        borderRadius: "16px",
+        border: `1px solid ${hovered ? `rgba(${accentRgb},0.4)` : "#ECEAE4"}`,
+        borderRadius: "20px",
         overflow: "hidden",
-        transition: "border-color 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease",
-        transform: hovered ? "translateY(-6px)" : "translateY(0)",
+        transition:
+          "border-color 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease, opacity 0.7s ease",
+        transitionDelay: `${index * 0.12}s`,
+        transform: visible
+          ? hovered
+            ? "translateY(-10px) scale(1.02)"
+            : "translateY(0) scale(1)"
+          : "translateY(32px) scale(0.98)",
+        opacity: visible ? 1 : 0,
         boxShadow: hovered
-          ? `0 20px 60px -12px ${accent}26`
-          : "0 2px 12px -4px rgba(13,14,26,0.06)",
-        position: "relative",
+          ? `0 24px 70px -10px rgba(${accentRgb},0.18), 0 0 0 1px rgba(${accentRgb},0.12)`
+          : "0 2px 20px rgba(13,14,26,0.06)",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {/* Top gradient bar */}
+      {/* Visual header */}
       <div
         style={{
-          height: "3px",
-          background: `linear-gradient(to right, ${accent}, ${accent === "#4F6EF7" ? "#00E5C3" : "#4F6EF7"})`,
+          height: "210px",
+          position: "relative",
+          overflow: "hidden",
+          background: `linear-gradient(135deg, rgba(${accentRgb},0.08) 0%, rgba(${accentRgb},0.03) 55%, transparent 100%)`,
+          flexShrink: 0,
         }}
-      />
+      >
+        {/* Grid pattern */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(rgba(${accentRgb},0.09) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(${accentRgb},0.09) 1px, transparent 1px)
+            `,
+            backgroundSize: "36px 36px",
+          }}
+        />
 
-      <div style={{ padding: "32px 28px 28px" }}>
-        {/* Tag + case number */}
-        <div className="flex items-center justify-between mb-7">
-          <span
-            className="font-sans font-semibold"
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: accent,
-              background: accent === "#4F6EF7" ? "rgba(79,110,247,0.08)" : "rgba(0,229,195,0.1)",
-              padding: "5px 12px",
-              borderRadius: "4px",
-            }}
-          >
-            {tag}
-          </span>
-          <span
-            className="font-display font-black"
-            style={{ fontSize: "36px", color: "#F0EFE9", lineHeight: 1 }}
-          >
-            {id}
-          </span>
+        {/* Fade grid into white at bottom */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "90px",
+            background: "linear-gradient(to bottom, transparent, #ffffff)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Radial glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "38%",
+            left: "38%",
+            transform: "translate(-50%, -50%)",
+            width: "210px",
+            height: "210px",
+            borderRadius: "50%",
+            background: `radial-gradient(circle, rgba(${accentRgb},0.14) 0%, transparent 68%)`,
+            opacity: hovered ? 1 : 0.55,
+            transition: "opacity 0.5s ease",
+          }}
+        />
+
+        {/* Oversized case number */}
+        <div
+          className="font-display"
+          style={{
+            position: "absolute",
+            bottom: "-14px",
+            right: "14px",
+            fontSize: "130px",
+            fontWeight: 900,
+            color: `rgba(${accentRgb},0.2)`,
+            lineHeight: 1,
+            letterSpacing: "-0.05em",
+            userSelect: "none",
+            transition: "transform 0.45s ease",
+            transform: hovered ? "scale(1.06)" : "scale(1)",
+          }}
+        >
+          {id}
         </div>
 
-        {/* Title */}
-        <h3
-          className="font-display font-bold mb-4"
+        {/* Tag pill */}
+        <div
           style={{
+            position: "absolute",
+            top: "18px",
+            left: "18px",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            background: `rgba(${accentRgb},0.1)`,
+            border: `1px solid rgba(${accentRgb},0.24)`,
+            color: accent,
+            fontSize: "10.5px",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            padding: "5px 12px 5px 9px",
+            borderRadius: "6px",
+          }}
+        >
+          <span
+            style={{
+              width: "5px",
+              height: "5px",
+              borderRadius: "50%",
+              background: accent,
+              boxShadow: `0 0 7px ${accent}`,
+              flexShrink: 0,
+            }}
+          />
+          {tag}
+        </div>
+
+        {/* Result badge */}
+        <div
+          className="font-sans"
+          style={{
+            position: "absolute",
+            top: "18px",
+            right: "18px",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "5px",
+            background: "rgba(13,14,26,0.04)",
+            border: "1px solid rgba(13,14,26,0.08)",
+            color: "#8B8FA8",
+            fontSize: "10px",
+            fontWeight: 500,
+            padding: "4px 10px",
+            borderRadius: "6px",
+          }}
+        >
+          ✓ {result}
+        </div>
+
+        {/* Accent bottom divider */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "1px",
+            background: `linear-gradient(90deg, transparent 0%, rgba(${accentRgb},0.5) 50%, transparent 100%)`,
+            opacity: hovered ? 1 : 0.3,
+            transition: "opacity 0.4s ease",
+          }}
+        />
+      </div>
+
+      {/* Body */}
+      <div
+        style={{
+          padding: "24px 24px 22px",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <h3
+          className="font-display"
+          style={{
+            fontWeight: 800,
             fontSize: "21px",
             color: "#0D0E1A",
-            lineHeight: "1.2",
-            letterSpacing: "-0.01em",
+            lineHeight: 1.2,
+            letterSpacing: "-0.02em",
+            marginBottom: "12px",
           }}
         >
           {title}
         </h3>
 
-        {/* Description */}
         <p
-          className="font-sans mb-8"
-          style={{ fontSize: "14px", color: "#8B8FA8", lineHeight: "1.75" }}
+          className="font-sans"
+          style={{
+            fontSize: "13.5px",
+            color: "#8B8FA8",
+            lineHeight: 1.75,
+            flex: 1,
+            marginBottom: "24px",
+          }}
         >
           {description}
         </p>
@@ -147,35 +289,42 @@ function CaseCard({
         {/* Stats */}
         <div
           style={{
-            borderTop: "1px solid #E8E7E3",
-            paddingTop: "20px",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
+            borderTop: "1px solid #ECEAE4",
+            paddingTop: "18px",
           }}
         >
           {stats.map((s, i) => (
             <div
               key={i}
               style={{
-                borderRight: i < 2 ? "1px solid #E8E7E3" : "none",
-                padding: i === 0 ? "0 12px 0 0" : i === 1 ? "0 12px" : "0 0 0 12px",
-                textAlign: i === 1 ? "center" : i === 2 ? "right" : "left",
+                textAlign: "center",
+                padding: "0 8px",
+                borderRight: i < 2 ? "1px solid #ECEAE4" : "none",
               }}
             >
               <div
-                className="font-display font-black"
+                className="font-display"
                 style={{
+                  fontWeight: 900,
                   fontSize: "22px",
                   color: accent,
                   lineHeight: 1,
                   marginBottom: "5px",
+                  letterSpacing: "-0.02em",
                 }}
               >
                 {s.value}
               </div>
               <div
                 className="font-sans"
-                style={{ fontSize: "11px", color: "#8B8FA8", lineHeight: 1.4 }}
+                style={{
+                  fontSize: "10.5px",
+                  color: "#B0B4C8",
+                  lineHeight: 1.4,
+                  fontWeight: 500,
+                }}
               >
                 {s.label}
               </div>
@@ -195,63 +344,175 @@ export default function Cases() {
       id="кейсы"
       ref={ref as React.RefObject<HTMLElement>}
       style={{
-        background: "#ffffff",
-        padding: "120px 0",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(30px)",
-        transition: "opacity 0.8s ease, transform 0.8s ease",
+        background: "#F7F6F2",
+        padding: "140px 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Subtle ambient blobs */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "-200px",
+          width: "560px",
+          height: "560px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(79,110,247,0.05) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-200px",
+          right: "-160px",
+          width: "580px",
+          height: "580px",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 mb-16">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 mb-20"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(30px)",
+            transition: "opacity 0.85s ease, transform 0.85s ease",
+          }}
+        >
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
+            {/* Section label */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "rgba(79,110,247,0.08)",
+                border: "1px solid rgba(79,110,247,0.2)",
+                borderRadius: "8px",
+                padding: "6px 14px 6px 10px",
+                marginBottom: "24px",
+              }}
+            >
               <span
-                className="font-sans font-medium tracking-[0.18em] uppercase"
-                style={{ fontSize: "11px", color: "#4F6EF7" }}
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: "#4F6EF7",
+                  boxShadow: "0 0 10px rgba(79,110,247,0.7)",
+                }}
+              />
+              <span
+                className="font-sans"
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "#4F6EF7",
+                }}
               >
                 Наши кейсы
               </span>
             </div>
+
             <h2
-              className="font-display font-black"
+              className="font-display"
               style={{
+                fontWeight: 900,
                 fontSize: "clamp(38px, 4.5vw, 58px)",
                 lineHeight: "1.0",
+                letterSpacing: "-0.025em",
                 color: "#0D0E1A",
-                letterSpacing: "-0.02em",
               }}
             >
               Результаты,
               <br />
               которые{" "}
-              <span style={{ color: "#4F6EF7" }}>говорят</span>
+              <span
+                style={
+                  {
+                    background:
+                      "linear-gradient(120deg, #4F6EF7 0%, #8B5CF6 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  } as React.CSSProperties
+                }
+              >
+                говорят
+              </span>
               <br />
               сами за себя
             </h2>
           </div>
+
           <div className="lg:col-span-3 flex items-end">
-            <p
-              className="font-sans"
-              style={{
-                fontSize: "16px",
-                color: "#8B8FA8",
-                lineHeight: "1.7",
-                maxWidth: "480px",
-              }}
-            >
-              Каждый случай уникален. Ниже — реальные истории наших пациентов
-              с конкретными, измеримыми результатами.
-            </p>
+            <div>
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "16px",
+                  color: "#8B8FA8",
+                  lineHeight: "1.75",
+                  maxWidth: "480px",
+                  marginBottom: "36px",
+                }}
+              >
+                Каждый случай уникален. Ниже — реальные истории наших пациентов
+                с конкретными, измеримыми результатами.
+              </p>
+
+              {/* Trust numbers */}
+              <div style={{ display: "flex", gap: "40px" }}>
+                {[
+                  { value: "1200+", label: "успешных случаев" },
+                  { value: "98%", label: "довольных пациентов" },
+                ].map((item, i) => (
+                  <div key={i}>
+                    <div
+                      className="font-display"
+                      style={{
+                        fontWeight: 900,
+                        fontSize: "32px",
+                        color: "#0D0E1A",
+                        letterSpacing: "-0.03em",
+                        lineHeight: 1,
+                        marginBottom: "5px",
+                      }}
+                    >
+                      {item.value}
+                    </div>
+                    <div
+                      className="font-sans"
+                      style={{
+                        fontSize: "12px",
+                        color: "#8B8FA8",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {CASES.map((c, i) => (
-            <CaseCard key={c.id} {...c} delay={i * 0.08} />
+            <CaseCard key={c.id} {...c} index={i} visible={visible} />
           ))}
         </div>
       </div>

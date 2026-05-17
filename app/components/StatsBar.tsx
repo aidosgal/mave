@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const STATS = [
   { value: 98, suffix: "%", label: "довольных пациентов" },
   { value: 12, suffix: "+", label: "лет на рынке" },
-  { value: 5000, suffix: "+", label: "успешных имплантаций" },
+  { value: 500, suffix: "+", label: "успешных имплантаций" },
   { value: 15, suffix: "", label: "врачей-специалистов" },
 ];
 
@@ -53,7 +53,7 @@ function StatItem({ value, suffix, label }: (typeof STATS)[number]) {
       <span
         className="font-display font-black leading-none tracking-tight"
         style={{
-          fontSize: "clamp(64px, 8vw, 120px)",
+          fontSize: "clamp(48px, 6vw, 100px)",
           color: "#0D0E1A",
           opacity: active ? 1 : 0,
           transform: active ? "translateY(0)" : "translateY(16px)",

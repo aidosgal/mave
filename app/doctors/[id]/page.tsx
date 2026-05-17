@@ -190,8 +190,8 @@ export default async function DoctorPage({
       {/* Certificates */}
       <section style={{ padding: "80px 0 120px" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center gap-2 mb-12">
-            <span style={{ color: "#4F6EF7", fontSize: "8px" }}>●</span>
+          <div className="flex items-center gap-2 mb-4">
+            <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
             <span
               className="font-sans font-medium tracking-[0.18em] uppercase"
               style={{ fontSize: "11px", color: "#4F6EF7" }}
@@ -200,73 +200,166 @@ export default async function DoctorPage({
             </span>
           </div>
 
+          <h2
+            className="font-display font-black mb-14"
+            style={{
+              fontSize: "clamp(32px, 4vw, 48px)",
+              lineHeight: "1.0",
+              color: "#0D0E1A",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Документы,{" "}
+            <span style={{ color: "#4F6EF7" }}>подтверждающие</span>
+            <br />
+            квалификацию
+          </h2>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {doctor.certificates.map((cert, i) => (
-              <div
-                key={i}
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid #E8E7E3",
-                  borderRadius: "12px",
-                  padding: "32px 28px",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-              >
-                {/* Decorative corner accent */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "4px",
-                    height: "100%",
-                    background: "linear-gradient(to bottom, #4F6EF7, #00E5C3)",
-                    borderRadius: "12px 0 0 12px",
-                  }}
-                />
+            {doctor.certificates.map((cert, i) => {
+              const yearMatch = cert.match(/\b(20\d{2}|19\d{2})\b/);
+              const year = yearMatch ? yearMatch[0] : null;
+              const title = year ? cert.replace(/,?\s*\b(20\d{2}|19\d{2})\b/, "").trim() : cert;
+              const colors = ["#4F6EF7", "#00E5C3", "#4F6EF7"];
+              const accent = colors[i % colors.length];
 
-                {/* Icon */}
+              return (
                 <div
+                  key={i}
                   style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "10px",
-                    background: "rgba(79,110,247,0.08)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "16px",
+                    background: "#ffffff",
+                    border: "1px solid #E8E7E3",
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    boxShadow: "0 2px 16px -4px rgba(13,14,26,0.07)",
                   }}
                 >
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#4F6EF7"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  {/* Certificate header */}
+                  <div
+                    style={{
+                      background: `linear-gradient(135deg, ${accent}14 0%, ${accent}06 100%)`,
+                      borderBottom: `1px solid ${accent}20`,
+                      padding: "28px 28px 24px",
+                      position: "relative",
+                    }}
                   >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M9 15l-3 7 6-3 6 3-3-7" />
-                    <path d="M9 15c1 .7 2 1 3 1s2-.3 3-1" />
-                  </svg>
-                </div>
+                    {/* Decorative rings */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-24px",
+                        right: "-24px",
+                        width: "100px",
+                        height: "100px",
+                        borderRadius: "50%",
+                        border: `1px solid ${accent}18`,
+                        pointerEvents: "none",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-10px",
+                        right: "-10px",
+                        width: "70px",
+                        height: "70px",
+                        borderRadius: "50%",
+                        border: `1px solid ${accent}12`,
+                        pointerEvents: "none",
+                      }}
+                    />
 
-                <p
-                  className="font-sans font-medium"
-                  style={{
-                    fontSize: "15px",
-                    color: "#0D0E1A",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  {cert}
-                </p>
-              </div>
-            ))}
+                    <div className="flex items-start justify-between gap-4">
+                      {/* Medal icon */}
+                      <div
+                        style={{
+                          width: "52px",
+                          height: "52px",
+                          borderRadius: "12px",
+                          background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
+                          border: `1px solid ${accent}30`,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <svg
+                          width="26"
+                          height="26"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke={accent}
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="9" r="5" />
+                          <path d="M12 14v7" />
+                          <path d="M9 18l3 3 3-3" />
+                          <path d="M8 9h.01M12 6v.01M16 9h.01" />
+                        </svg>
+                      </div>
+
+                      {/* Year badge */}
+                      {year && (
+                        <div
+                          style={{
+                            background: accent,
+                            color: "#ffffff",
+                            borderRadius: "6px",
+                            padding: "4px 10px",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <span className="font-display font-black" style={{ fontSize: "15px" }}>
+                            {year}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Certificate body */}
+                  <div style={{ padding: "24px 28px 28px" }}>
+                    <p
+                      className="font-display font-semibold mb-4"
+                      style={{
+                        fontSize: "16px",
+                        color: "#0D0E1A",
+                        lineHeight: "1.45",
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {title}
+                    </p>
+
+                    {/* Verified badge */}
+                    <div className="flex items-center gap-2">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={accent}
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                      </svg>
+                      <span
+                        className="font-sans font-medium"
+                        style={{ fontSize: "12px", color: accent }}
+                      >
+                        Подтверждено
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* CTA */}

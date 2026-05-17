@@ -4,6 +4,7 @@ import StatsBar from "./components/StatsBar";
 import Services from "./components/Services";
 import Differentiators from "./components/Differentiators";
 import Doctors from "./components/Doctors";
+import Cases from "./components/Cases";
 import Testimonial from "./components/Testimonial";
 import CTA from "./components/CTA";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Services />
       <Differentiators />
       <Doctors />
+      <Cases />
       <Testimonial />
       <CTA />
     </main>

@@ -23,7 +23,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
         <Image
           src="/logo.png"
-          alt="Mave Dental"
+          alt="Mavi Dental"
           width={160}
           height={54}
           style={{ width: "auto", height: "44px" }}

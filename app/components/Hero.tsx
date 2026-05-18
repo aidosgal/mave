@@ -14,8 +14,7 @@ export default function Hero() {
           right: "-80px",
           width: "750px",
           height: "750px",
-          background:
-            "radial-gradient(circle at center, #4F6EF7 0%, transparent 65%)",
+          background: "radial-gradient(circle at center, #4F6EF7 0%, transparent 65%)",
           opacity: 0.28,
           filter: "blur(80px)",
           animation: "float 8s ease-in-out infinite",
@@ -29,8 +28,7 @@ export default function Hero() {
           left: "-60px",
           width: "340px",
           height: "340px",
-          background:
-            "radial-gradient(circle at center, #00E5C3 0%, transparent 70%)",
+          background: "radial-gradient(circle at center, #00E5C3 0%, transparent 70%)",
           opacity: 0.1,
           filter: "blur(60px)",
           animation: "float 12s ease-in-out infinite reverse",
@@ -42,11 +40,11 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center py-10 lg:py-16">
           {/* Left */}
           <div>
             <div
-              className="flex items-center gap-2 mb-8"
+              className="flex items-center gap-2 mb-6 sm:mb-8"
               style={{ animation: "fade-up 0.6s ease 0.1s both" }}
             >
               <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
@@ -54,23 +52,21 @@ export default function Hero() {
                 className="font-sans font-medium tracking-[0.18em] uppercase"
                 style={{ fontSize: "11px", color: "#4F6EF7" }}
               >
-                Стоматологическая клиника
+                Стоматологическая клиника · Алматы
               </span>
             </div>
 
             <h1
-              className="font-display font-black text-white mb-8"
+              className="font-display font-black text-white mb-6 sm:mb-8"
               style={{
-                fontSize: "clamp(56px, 7.5vw, 108px)",
+                fontSize: "clamp(48px, 7.5vw, 108px)",
                 lineHeight: "0.95",
                 letterSpacing: "-0.02em",
               }}
             >
               <span
                 className="block"
-                style={{
-                  animation: "reveal-text 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both",
-                }}
+                style={{ animation: "reveal-text 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both" }}
               >
                 Мы создаём
               </span>
@@ -85,16 +81,14 @@ export default function Hero() {
               </span>
               <span
                 className="block"
-                style={{
-                  animation: "reveal-text 0.9s cubic-bezier(0.16,1,0.3,1) 0.45s both",
-                }}
+                style={{ animation: "reveal-text 0.9s cubic-bezier(0.16,1,0.3,1) 0.45s both" }}
               >
                 улыбки
               </span>
             </h1>
 
             <p
-              className="font-sans leading-relaxed mb-10 max-w-md"
+              className="font-sans leading-relaxed mb-8 sm:mb-10 max-w-md"
               style={{
                 fontSize: "16px",
                 color: "#8B8FA8",
@@ -106,7 +100,7 @@ export default function Hero() {
             </p>
 
             <div
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               style={{ animation: "fade-up 0.8s ease 0.8s both" }}
             >
               <button
@@ -150,9 +144,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right – technical tooth diagram */}
+          {/* Right – technical tooth diagram (visible on all screen sizes) */}
           <div
-            className="hidden lg:flex items-center justify-center"
+            className="flex items-center justify-center py-4 lg:py-0"
             style={{ animation: "fade-up 1s ease 0.35s both" }}
           >
             <ToothDiagram />
@@ -175,8 +169,7 @@ export default function Hero() {
           <div
             className="w-px h-10"
             style={{
-              background:
-                "linear-gradient(to bottom, #8B8FA8 0%, transparent 100%)",
+              background: "linear-gradient(to bottom, #8B8FA8 0%, transparent 100%)",
             }}
           />
         </div>
@@ -187,7 +180,10 @@ export default function Hero() {
 
 function ToothDiagram() {
   return (
-    <div className="relative w-[400px] h-[460px]">
+    <div
+      className="relative w-full max-w-[240px] sm:max-w-[320px] lg:max-w-[400px]"
+      style={{ aspectRatio: "400 / 460" }}
+    >
       <svg
         viewBox="0 0 400 460"
         fill="none"

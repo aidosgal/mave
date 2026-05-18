@@ -73,7 +73,7 @@ function DoctorCard({
               transition: "transform 0.4s ease",
               transform: hovered ? "scale(1.04)" : "scale(1)",
             }}
-            sizes="(max-width: 768px) 100vw, 25vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
           {/* Gradient overlay */}
           <div
@@ -105,17 +105,17 @@ function DoctorCard({
         </div>
 
         {/* Info */}
-        <div style={{ padding: "20px 24px 24px" }}>
+        <div style={{ padding: "18px 20px 22px" }}>
           <p
             className="font-sans font-medium mb-1"
-            style={{ fontSize: "12px", color: "#00E5C3", letterSpacing: "0.1em", textTransform: "uppercase" }}
+            style={{ fontSize: "11px", color: "#00E5C3", letterSpacing: "0.1em", textTransform: "uppercase" }}
           >
             {doctor.specialty}
           </p>
           <h3
-            className="font-display font-bold mb-4"
+            className="font-display font-bold mb-3"
             style={{
-              fontSize: "20px",
+              fontSize: "18px",
               color: "#ffffff",
               letterSpacing: "-0.01em",
               lineHeight: 1.2,
@@ -156,9 +156,9 @@ export default function Doctors() {
     <section
       id="врачи"
       ref={ref as React.RefObject<HTMLElement>}
+      className="py-16 sm:py-24 lg:py-[120px]"
       style={{
         background: "#181A33",
-        padding: "120px 0",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.8s ease, transform 0.8s ease",
@@ -166,9 +166,9 @@ export default function Doctors() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 sm:mb-16">
           <div>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-5 sm:mb-6">
               <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
               <span
                 className="font-sans font-medium tracking-[0.18em] uppercase"
@@ -180,7 +180,7 @@ export default function Doctors() {
             <h2
               className="font-display font-black"
               style={{
-                fontSize: "clamp(38px, 4.5vw, 58px)",
+                fontSize: "clamp(34px, 4.5vw, 58px)",
                 lineHeight: "1.0",
                 color: "#ffffff",
                 letterSpacing: "-0.02em",
@@ -202,7 +202,7 @@ export default function Doctors() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {DOCTORS.map((doctor, i) => (
             <DoctorCard key={doctor.id} doctor={doctor} index={i} />
           ))}

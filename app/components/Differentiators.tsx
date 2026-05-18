@@ -61,9 +61,9 @@ export default function Differentiators() {
     <section
       id="о нас"
       ref={ref as React.RefObject<HTMLElement>}
+      className="py-16 sm:py-24 lg:py-[120px]"
       style={{
         background: "#181A33",
-        padding: "120px 0",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.8s ease, transform 0.8s ease",
@@ -71,7 +71,7 @@ export default function Differentiators() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
-        <div className="mb-16 flex items-center gap-2">
+        <div className="mb-10 sm:mb-16 flex items-center gap-2">
           <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
           <span
             className="font-sans font-medium tracking-[0.18em] uppercase"
@@ -86,24 +86,21 @@ export default function Differentiators() {
           {ITEMS.map((item, i) => (
             <div
               key={item.title}
+              className="px-6 py-10 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
               style={{
-                padding: "48px 40px",
                 borderRight: i < 2 ? "1px solid rgba(255,255,255,0.07)" : "none",
                 borderTop: "1px solid rgba(255,255,255,0.07)",
                 transitionDelay: `${i * 0.12}s`,
               }}
             >
               {/* Icon */}
-              <div
-                className="mb-6"
-                style={{ color: "#00E5C3" }}
-              >
+              <div className="mb-5 sm:mb-6" style={{ color: "#00E5C3" }}>
                 {item.icon}
               </div>
 
               <h3
                 className="font-display font-bold mb-3"
-                style={{ fontSize: "20px", color: "#ffffff", letterSpacing: "-0.01em" }}
+                style={{ fontSize: "19px", color: "#ffffff", letterSpacing: "-0.01em" }}
               >
                 {item.title}
               </h3>

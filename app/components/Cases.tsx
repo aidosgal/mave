@@ -111,7 +111,7 @@ function CaseCard({
       {/* Visual header */}
       <div
         style={{
-          height: "210px",
+          height: "190px",
           position: "relative",
           overflow: "hidden",
           background: `linear-gradient(135deg, rgba(${accentRgb},0.08) 0%, rgba(${accentRgb},0.03) 55%, transparent 100%)`,
@@ -263,7 +263,7 @@ function CaseCard({
           className="font-display"
           style={{
             fontWeight: 800,
-            fontSize: "21px",
+            fontSize: "20px",
             color: "#0D0E1A",
             lineHeight: 1.2,
             letterSpacing: "-0.02em",
@@ -308,7 +308,7 @@ function CaseCard({
                 className="font-display"
                 style={{
                   fontWeight: 900,
-                  fontSize: "22px",
+                  fontSize: "20px",
                   color: accent,
                   lineHeight: 1,
                   marginBottom: "5px",
@@ -320,7 +320,7 @@ function CaseCard({
               <div
                 className="font-sans"
                 style={{
-                  fontSize: "10.5px",
+                  fontSize: "10px",
                   color: "#B0B4C8",
                   lineHeight: 1.4,
                   fontWeight: 500,
@@ -343,9 +343,9 @@ export default function Cases() {
     <section
       id="кейсы"
       ref={ref as React.RefObject<HTMLElement>}
+      className="py-20 lg:py-[140px]"
       style={{
         background: "#F7F6F2",
-        padding: "140px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -359,8 +359,7 @@ export default function Cases() {
           width: "560px",
           height: "560px",
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(79,110,247,0.05) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(79,110,247,0.05) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -372,8 +371,7 @@ export default function Cases() {
           width: "580px",
           height: "580px",
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -381,7 +379,7 @@ export default function Cases() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 mb-20"
+          className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-20 mb-12 sm:mb-20"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -399,7 +397,7 @@ export default function Cases() {
                 border: "1px solid rgba(79,110,247,0.2)",
                 borderRadius: "8px",
                 padding: "6px 14px 6px 10px",
-                marginBottom: "24px",
+                marginBottom: "20px",
               }}
             >
               <span
@@ -429,7 +427,7 @@ export default function Cases() {
               className="font-display"
               style={{
                 fontWeight: 900,
-                fontSize: "clamp(38px, 4.5vw, 58px)",
+                fontSize: "clamp(34px, 4.5vw, 58px)",
                 lineHeight: "1.0",
                 letterSpacing: "-0.025em",
                 color: "#0D0E1A",
@@ -441,8 +439,7 @@ export default function Cases() {
               <span
                 style={
                   {
-                    background:
-                      "linear-gradient(120deg, #4F6EF7 0%, #8B5CF6 100%)",
+                    background: "linear-gradient(120deg, #4F6EF7 0%, #8B5CF6 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -461,11 +458,11 @@ export default function Cases() {
               <p
                 className="font-sans"
                 style={{
-                  fontSize: "16px",
+                  fontSize: "15px",
                   color: "#8B8FA8",
                   lineHeight: "1.75",
                   maxWidth: "480px",
-                  marginBottom: "36px",
+                  marginBottom: "28px",
                 }}
               >
                 Каждый случай уникален. Ниже — реальные истории наших пациентов
@@ -473,7 +470,7 @@ export default function Cases() {
               </p>
 
               {/* Trust numbers */}
-              <div style={{ display: "flex", gap: "40px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "24px 40px" }}>
                 {[
                   { value: "1200+", label: "успешных случаев" },
                   { value: "98%", label: "довольных пациентов" },
@@ -483,7 +480,7 @@ export default function Cases() {
                       className="font-display"
                       style={{
                         fontWeight: 900,
-                        fontSize: "32px",
+                        fontSize: "28px",
                         color: "#0D0E1A",
                         letterSpacing: "-0.03em",
                         lineHeight: 1,
@@ -494,11 +491,7 @@ export default function Cases() {
                     </div>
                     <div
                       className="font-sans"
-                      style={{
-                        fontSize: "12px",
-                        color: "#8B8FA8",
-                        fontWeight: 500,
-                      }}
+                      style={{ fontSize: "12px", color: "#8B8FA8", fontWeight: 500 }}
                     >
                       {item.label}
                     </div>

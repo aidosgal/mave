@@ -15,6 +15,45 @@ function useScrollReveal(threshold = 0.15) {
   return { ref, visible };
 }
 
+const reviews = [
+  {
+    initial: "Д",
+    name: "Дмитрий Ковалёв",
+    procedure: "Отбеливание зубов",
+    text: "Уже через час улыбка стала на несколько тонов светлее. Врачи объяснили каждый шаг процедуры — никаких сюрпризов.",
+  },
+  {
+    initial: "З",
+    name: "Зарина Нурланова",
+    procedure: "Брекеты",
+    text: "Год лечения — и результат потрясающий. Команда всегда на связи, отвечают на любые вопросы быстро.",
+  },
+  {
+    initial: "М",
+    name: "Михаил Петров",
+    procedure: "Протезирование",
+    text: "Профессиональный подход с первого визита. Мне сделали красивую улыбку — именно то, о чём я мечтал.",
+  },
+  {
+    initial: "С",
+    name: "Сауле Бекова",
+    procedure: "Детская стоматология",
+    text: "Дочь раньше боялась врачей, а теперь сама просится на приём! Детский кабинет — просто волшебство.",
+  },
+  {
+    initial: "Р",
+    name: "Руслан Ахметов",
+    procedure: "Имплантация",
+    text: "Восстановление прошло без осложнений. Полный контроль на каждом этапе — чувствую себя уверенно.",
+  },
+  {
+    initial: "А",
+    name: "Анна Соколова",
+    procedure: "Виниры",
+    text: "Виниры выглядят абсолютно натурально. Несколько подруг уже спросили, всегда ли у меня такая улыбка.",
+  },
+];
+
 export default function Testimonial() {
   const { ref, visible } = useScrollReveal();
 
@@ -22,9 +61,9 @@ export default function Testimonial() {
     <section
       id="отзывы"
       ref={ref as React.RefObject<HTMLElement>}
+      className="py-16 sm:py-24 lg:py-[120px]"
       style={{
         background: "#F7F6F2",
-        padding: "120px 0",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.9s ease, transform 0.9s ease",
@@ -56,7 +95,7 @@ export default function Testimonial() {
           "
         </div>
 
-        {/* Quote text */}
+        {/* Featured quote */}
         <blockquote
           className="font-display font-semibold italic"
           style={{
@@ -70,14 +109,13 @@ export default function Testimonial() {
         >
           Впервые в жизни я не боялся идти к стоматологу.
           <br />
-          Команда Mave — это совсем другой уровень заботы
+          Команда Mavi — это совсем другой уровень заботы
           <br />
           и профессионализма.
         </blockquote>
 
-        {/* Author */}
-        <div className="flex items-center gap-4">
-          {/* Avatar placeholder */}
+        {/* Featured author */}
+        <div className="flex items-center gap-4 mb-20">
           <div
             className="rounded-full flex items-center justify-center font-display font-bold text-white"
             style={{
@@ -104,13 +142,82 @@ export default function Testimonial() {
               Пациент клиники, имплантация
             </p>
           </div>
-
-          {/* Stars */}
           <div className="ml-auto hidden sm:flex gap-1">
             {[...Array(5)].map((_, i) => (
               <span key={i} style={{ color: "#4F6EF7", fontSize: "16px" }}>★</span>
             ))}
           </div>
+        </div>
+
+        {/* Divider */}
+        <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)", marginBottom: "64px" }} />
+
+        {/* Review cards grid */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review, i) => (
+            <div
+              key={i}
+              style={{
+                background: "#ffffff",
+                borderRadius: "12px",
+                padding: "32px",
+                border: "1px solid rgba(0,0,0,0.05)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0",
+              }}
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-5">
+                {[...Array(5)].map((_, j) => (
+                  <span key={j} style={{ color: "#4F6EF7", fontSize: "13px" }}>★</span>
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p
+                className="font-sans"
+                style={{
+                  fontSize: "15px",
+                  color: "#3A3D52",
+                  lineHeight: "1.65",
+                  flexGrow: 1,
+                  marginBottom: "28px",
+                }}
+              >
+                {review.text}
+              </p>
+
+              {/* Author */}
+              <div className="flex items-center gap-3">
+                <div
+                  className="rounded-full flex items-center justify-center font-display font-bold text-white flex-shrink-0"
+                  style={{
+                    width: "38px",
+                    height: "38px",
+                    background: "linear-gradient(135deg, #4F6EF7, #00E5C3)",
+                    fontSize: "14px",
+                  }}
+                >
+                  {review.initial}
+                </div>
+                <div>
+                  <p
+                    className="font-sans font-medium"
+                    style={{ fontSize: "14px", color: "#0D0E1A" }}
+                  >
+                    {review.name}
+                  </p>
+                  <p
+                    className="font-sans"
+                    style={{ fontSize: "12px", color: "#8B8FA8" }}
+                  >
+                    {review.procedure}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

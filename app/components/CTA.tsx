@@ -15,6 +15,33 @@ function useScrollReveal(threshold = 0.15) {
   return { ref, visible };
 }
 
+const infoCards = [
+  {
+    label: "Адрес",
+    value: "ул. Абая 12, этаж 3",
+    sub: "Алматы, Казахстан",
+    icon: "📍",
+  },
+  {
+    label: "Часы работы",
+    value: "Пн–Пт: 09:00–20:00",
+    sub: "Сб–Вс: 10:00–17:00",
+    icon: "🕐",
+  },
+  {
+    label: "Телефон",
+    value: "+7 (700) 123-45-67",
+    sub: "Звонок бесплатный",
+    icon: "📞",
+  },
+  {
+    label: "Гарантия",
+    value: "До 5 лет",
+    sub: "На все виды работ",
+    icon: "✓",
+  },
+];
+
 export default function CTA() {
   const { ref, visible } = useScrollReveal();
 
@@ -22,10 +49,9 @@ export default function CTA() {
     <section
       id="контакты"
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden pt-16 sm:pt-24 lg:pt-[140px]"
       style={{
         background: "#181A33",
-        padding: "140px 0",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.9s ease, transform 0.9s ease",
@@ -47,87 +73,150 @@ export default function CTA() {
         }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12 text-center">
-        <div className="flex justify-center items-center gap-2 mb-8">
-          <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
-          <span
-            className="font-sans font-medium tracking-[0.18em] uppercase"
-            style={{ fontSize: "11px", color: "#4F6EF7" }}
-          >
-            Начните сегодня
-          </span>
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
+        {/* Info cards row */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12 sm:mb-16 lg:mb-24">
+          {infoCards.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                borderRadius: "12px",
+                padding: "24px",
+              }}
+            >
+              <span
+                className="block mb-3"
+                style={{ fontSize: "20px", lineHeight: 1 }}
+              >
+                {card.icon}
+              </span>
+              <p
+                className="font-sans font-medium tracking-[0.14em] uppercase mb-2"
+                style={{ fontSize: "10px", color: "#4F6EF7" }}
+              >
+                {card.label}
+              </p>
+              <p
+                className="font-sans font-semibold"
+                style={{ fontSize: "15px", color: "#ffffff", marginBottom: "4px" }}
+              >
+                {card.value}
+              </p>
+              <p
+                className="font-sans"
+                style={{ fontSize: "12px", color: "#8B8FA8" }}
+              >
+                {card.sub}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <h2
-          className="font-display font-black text-white mb-8"
-          style={{
-            fontSize: "clamp(48px, 8vw, 110px)",
-            lineHeight: "0.95",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          Запишитесь
-          <br />
-          <span style={{ color: "#4F6EF7" }}>сегодня</span>
-        </h2>
+        {/* Main CTA block */}
+        <div className="text-center pb-12 lg:pb-20">
+          <div className="flex justify-center items-center gap-2 mb-8">
+            <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
+            <span
+              className="font-sans font-medium tracking-[0.18em] uppercase"
+              style={{ fontSize: "11px", color: "#4F6EF7" }}
+            >
+              Начните сегодня
+            </span>
+          </div>
 
-        <p
-          className="font-sans mb-12 mx-auto"
-          style={{
-            fontSize: "17px",
-            color: "#8B8FA8",
-            lineHeight: "1.7",
-            maxWidth: "480px",
-          }}
-        >
-          Первичная консультация бесплатно.
-          Мы перезвоним в течение 15 минут.
-        </p>
-
-        <button
-          className="font-sans font-medium text-white transition-all duration-200 mb-10"
-          style={{
-            background: "#4F6EF7",
-            fontSize: "16px",
-            padding: "20px 48px",
-            borderRadius: "6px",
-            display: "inline-block",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#3d5ce8";
-            e.currentTarget.style.transform = "scale(1.03)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "#4F6EF7";
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          Записаться на приём
-        </button>
-
-        <div>
-          <a
-            href="tel:+77001234567"
-            className="font-sans transition-colors duration-200"
-            style={{ fontSize: "15px", color: "#8B8FA8" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#8B8FA8")}
+          <h2
+            className="font-display font-black text-white mb-8"
+            style={{
+              fontSize: "clamp(48px, 8vw, 110px)",
+              lineHeight: "0.95",
+              letterSpacing: "-0.02em",
+            }}
           >
-            +7 (700) 123-45-67
-          </a>
+            Запишитесь
+            <br />
+            <span style={{ color: "#4F6EF7" }}>сегодня</span>
+          </h2>
+
+          <p
+            className="font-sans mb-12 mx-auto"
+            style={{
+              fontSize: "17px",
+              color: "#8B8FA8",
+              lineHeight: "1.7",
+              maxWidth: "480px",
+            }}
+          >
+            Первичная консультация бесплатно.
+            Мы перезвоним в течение 15 минут.
+          </p>
+
+          <button
+            className="font-sans font-medium text-white transition-all duration-200 mb-10"
+            style={{
+              background: "#4F6EF7",
+              fontSize: "16px",
+              padding: "20px 48px",
+              borderRadius: "6px",
+              display: "inline-block",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#3d5ce8";
+              e.currentTarget.style.transform = "scale(1.03)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#4F6EF7";
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          >
+            Записаться на приём
+          </button>
+
+          <div>
+            <a
+              href="tel:+77001234567"
+              className="font-sans transition-colors duration-200"
+              style={{ fontSize: "15px", color: "#8B8FA8" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#8B8FA8")}
+            >
+              +7 (700) 123-45-67
+            </a>
+          </div>
         </div>
 
         {/* Bottom separator */}
         <div
-          className="mt-20 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
         >
           <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
-            © 2025 Mave Dental. Все права защищены.
+            © 2025 Mavi Dental. Все права защищены.
           </p>
-          <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
-            Алматы, ул. Абая 12, этаж 3
-          </p>
+          <div className="flex items-center gap-6">
+            <a
+              href="#"
+              className="font-sans transition-colors duration-200"
+              style={{ fontSize: "13px", color: "#8B8FA8" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#8B8FA8")}
+            >
+              Instagram
+            </a>
+            <a
+              href="#"
+              className="font-sans transition-colors duration-200"
+              style={{ fontSize: "13px", color: "#8B8FA8" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#8B8FA8")}
+            >
+              WhatsApp
+            </a>
+            <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
+              Алматы, ул. Абая 12, этаж 3
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -48,12 +48,12 @@ function StatItem({ value, suffix, label }: (typeof STATS)[number]) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center lg:items-start px-8 py-10"
+      className="flex flex-col items-center lg:items-start px-4 py-7 sm:px-8 sm:py-10"
     >
       <span
         className="font-display font-black leading-none tracking-tight"
         style={{
-          fontSize: "clamp(48px, 6vw, 100px)",
+          fontSize: "clamp(36px, 6vw, 100px)",
           color: "#0D0E1A",
           opacity: active ? 1 : 0,
           transform: active ? "translateY(0)" : "translateY(16px)",
@@ -64,8 +64,8 @@ function StatItem({ value, suffix, label }: (typeof STATS)[number]) {
         {suffix}
       </span>
       <span
-        className="font-sans mt-2"
-        style={{ fontSize: "14px", color: "#8B8FA8" }}
+        className="font-sans mt-1 sm:mt-2 text-center lg:text-left"
+        style={{ fontSize: "13px", color: "#8B8FA8", lineHeight: "1.4" }}
       >
         {label}
       </span>

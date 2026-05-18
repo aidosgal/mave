@@ -17,7 +17,7 @@ export async function generateMetadata({
   const doctor = DOCTORS.find((d) => d.id === id);
   if (!doctor) return {};
   return {
-    title: `${doctor.name} — Mave Dental`,
+    title: `${doctor.name} — Mavi Dental`,
     description: doctor.bio,
   };
 }

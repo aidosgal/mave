@@ -75,44 +75,7 @@ export default function CTA() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-12">
         {/* Info cards row */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12 sm:mb-16 lg:mb-24">
-          {infoCards.map((card, i) => (
-            <div
-              key={i}
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "12px",
-                padding: "24px",
-              }}
-            >
-              <span
-                className="block mb-3"
-                style={{ fontSize: "20px", lineHeight: 1 }}
-              >
-                {card.icon}
-              </span>
-              <p
-                className="font-sans font-medium tracking-[0.14em] uppercase mb-2"
-                style={{ fontSize: "10px", color: "#4F6EF7" }}
-              >
-                {card.label}
-              </p>
-              <p
-                className="font-sans font-semibold"
-                style={{ fontSize: "15px", color: "#ffffff", marginBottom: "4px" }}
-              >
-                {card.value}
-              </p>
-              <p
-                className="font-sans"
-                style={{ fontSize: "12px", color: "#8B8FA8" }}
-              >
-                {card.sub}
-              </p>
-            </div>
-          ))}
-        </div>
+
 
         {/* Main CTA block */}
         <div className="text-center pb-12 lg:pb-20">

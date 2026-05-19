@@ -102,6 +102,23 @@ export default function CTA() {
             <span style={{ color: "#4F6EF7" }}>сегодня</span>
           </h2>
 
+          <div className="flex justify-center mb-6">
+            <span
+              className="font-sans font-semibold"
+              style={{
+                fontSize: "15px",
+                color: "#00E5C3",
+                background: "rgba(0,229,195,0.1)",
+                border: "1px solid rgba(0,229,195,0.25)",
+                borderRadius: "100px",
+                padding: "8px 20px",
+                display: "inline-block",
+              }}
+            >
+              Первичная консультация всего 2000 ₸
+            </span>
+          </div>
+
           <p
             className="font-sans mb-12 mx-auto"
             style={{
@@ -111,7 +128,6 @@ export default function CTA() {
               maxWidth: "480px",
             }}
           >
-            Первичная консультация 2000 ₸.
             Мы перезвоним в течение 15 минут.
           </p>
 
@@ -160,7 +176,7 @@ export default function CTA() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
         >
           <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
-            © 2026 Mavi clinic. Все права защищены.
+            © 2026 MAVI clinic. Все права защищены.
           </p>
           <div className="flex items-center gap-6">
             <a

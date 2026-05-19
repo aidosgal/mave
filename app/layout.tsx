@@ -16,7 +16,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Mavi Dental — Стоматология нового уровня",
+  title: "MAVI clinic — Стоматология нового уровня",
   description:
     "Современная стоматологическая клиника с передовыми технологиями и индивидуальным подходом к каждому пациенту.",
 };

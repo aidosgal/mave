@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "../../components/Nav";
-import { DOCTORS } from "../../lib/doctors-data";
+import { DOCTORS, type Cert } from "../../lib/doctors-data";
+import CertThumb from "../../components/CertThumb";
 
 export function generateStaticParams() {
   return DOCTORS.map((d) => ({ id: d.id }));
@@ -313,13 +314,13 @@ export default async function DoctorPage({
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {doctor.certificatePdfs && doctor.certificatePdfs.length > 0
-              ? doctor.certificatePdfs.map((pdf, i) => {
-                  const accent = ["#4F6EF7", "#00E5C3", "#4F6EF7"][i % 3];
+            {doctor.certs && doctor.certs.length > 0
+              ? doctor.certs.map((cert: Cert, i: number) => {
+                  const accent = "#4F6EF7";
                   return (
                     <a
                       key={i}
-                      href={pdf}
+                      href={cert.pdf}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -334,105 +335,60 @@ export default async function DoctorPage({
                       }}
                       className="hover:-translate-y-1 hover:shadow-xl"
                     >
-                      {/* Card header */}
+                      {/* Certificate preview area */}
                       <div
                         style={{
-                          background: `linear-gradient(135deg, ${accent}14 0%, ${accent}06 100%)`,
-                          borderBottom: `1px solid ${accent}20`,
-                          padding: "28px 28px 24px",
                           position: "relative",
+                          height: "160px",
+                          overflow: "hidden",
+                          background: cert.image
+                            ? "transparent"
+                            : `linear-gradient(135deg, ${accent}10 0%, ${accent}05 100%)`,
+                          borderBottom: `1px solid ${accent}20`,
                         }}
                       >
+                        <CertThumb src={cert.pdf} accent={accent} rotate={cert.rotate} />
+                        {/* Number badge overlay */}
                         <div
                           style={{
                             position: "absolute",
-                            top: "-24px",
-                            right: "-24px",
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "50%",
-                            border: `1px solid ${accent}18`,
-                            pointerEvents: "none",
+                            top: "12px",
+                            right: "12px",
+                            background: accent,
+                            color: "#ffffff",
+                            borderRadius: "6px",
+                            padding: "3px 9px",
                           }}
-                        />
-                        <div className="flex items-start justify-between gap-4">
-                          {/* PDF icon */}
-                          <div
-                            style={{
-                              width: "52px",
-                              height: "52px",
-                              borderRadius: "12px",
-                              background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
-                              border: `1px solid ${accent}30`,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexShrink: 0,
-                            }}
-                          >
-                            <svg
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke={accent}
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                              <polyline points="14 2 14 8 20 8" />
-                              <line x1="16" y1="13" x2="8" y2="13" />
-                              <line x1="16" y1="17" x2="8" y2="17" />
-                              <polyline points="10 9 9 9 8 9" />
-                            </svg>
-                          </div>
-                          {/* Number badge */}
-                          <div
-                            style={{
-                              background: accent,
-                              color: "#ffffff",
-                              borderRadius: "6px",
-                              padding: "4px 10px",
-                              flexShrink: 0,
-                            }}
-                          >
-                            <span className="font-display font-black" style={{ fontSize: "15px" }}>
-                              №{i + 1}
-                            </span>
-                          </div>
+                        >
+                          <span className="font-display font-black" style={{ fontSize: "13px" }}>
+                            №{i + 1}
+                          </span>
                         </div>
                       </div>
 
                       {/* Card body */}
-                      <div style={{ padding: "24px 28px 28px" }}>
+                      <div style={{ padding: "20px 24px 22px" }}>
                         <p
-                          className="font-display font-semibold mb-4"
-                          style={{ fontSize: "16px", color: "#0D0E1A", lineHeight: "1.45", letterSpacing: "-0.01em" }}
+                          className="font-display font-semibold mb-3"
+                          style={{ fontSize: "14px", color: "#0D0E1A", lineHeight: "1.4", letterSpacing: "-0.01em" }}
                         >
-                          Сертификат №{i + 1}
+                          {cert.course}
                         </p>
-                        <div className="flex items-center gap-2">
-                          <svg
-                            width="13"
-                            height="13"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke={accent}
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="font-sans" style={{ fontSize: "12px", color: "#8B8FA8" }}>
+                              {cert.city}
+                            </span>
+                            <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "#C8CAD8", display: "inline-block" }} />
+                            <span className="font-sans font-semibold" style={{ fontSize: "12px", color: accent }}>
+                              {cert.year}
+                            </span>
+                          </div>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                             <polyline points="15 3 21 3 21 9" />
                             <line x1="10" y1="14" x2="21" y2="3" />
                           </svg>
-                          <span
-                            className="font-sans font-medium"
-                            style={{ fontSize: "12px", color: accent }}
-                          >
-                            Открыть сертификат
-                          </span>
                         </div>
                       </div>
                     </a>

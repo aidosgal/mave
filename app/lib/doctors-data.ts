@@ -1,3 +1,12 @@
+export type Cert = {
+  pdf: string;
+  image?: string;
+  course: string;
+  city: string;
+  year: number;
+  rotate?: 90 | 180 | 270;
+};
+
 type Doctor = {
   id: string;
   name: string;
@@ -7,6 +16,7 @@ type Doctor = {
   education: string;
   certificates: string[];
   certificatePdfs?: string[];
+  certs?: Cert[];
   about?: string;
 };
 
@@ -32,18 +42,18 @@ export const DOCTORS: Doctor[] = [
 
 Специализируется на комплексном восстановлении функции и эстетики улыбки даже в сложных клинических случаях, включая выраженную атрофию костной ткани. В своей работе сочетает хирургическую точность, функциональность и внимание к эстетике итогового результата, уделяя особое внимание безопасности, комфорту и долгосрочности лечения.`,
     certificates: [],
-    certificatePdfs: [
-      "/certificates/1/1.pdf",
-      "/certificates/1/2.pdf",
-      "/certificates/1/3.pdf",
-      "/certificates/1/4.pdf",
-      "/certificates/1/5.pdf",
-      "/certificates/1/6.pdf",
-      "/certificates/1/7.pdf",
-      "/certificates/1/8.pdf",
-      "/certificates/1/9.pdf",
-      "/certificates/1/10.pdf",
-      "/certificates/1/11.pdf",
+    certs: [
+      { pdf: "/certificates/1/1.pdf", course: "Ортопедический протокол All-On-4/6", city: "г. Караганда", year: 2026, rotate: 270 },
+      { pdf: "/certificates/1/2.pdf", course: "All-On-4 Concept", city: "г. Астана", year: 2025, rotate: 270 },
+      { pdf: "/certificates/1/3.pdf", course: "Build up, prep. виниры, полная коронка", city: "г. Алматы", year: 2023, rotate: 270 },
+      { pdf: "/certificates/1/4.pdf", course: "Техника вертикального препарирования зубов и концепция В.О.Р.Т.", city: "г. Астана", year: 2024, rotate: 270 },
+      { pdf: "/certificates/1/5.pdf", course: "Gaziosmanpaşa Hastenesi — Повышение квалификации", city: "г. Стамбул", year: 2021, rotate: 270 },
+      { pdf: "/certificates/1/6.pdf", course: "Расширенный курс по керамическим реставрациям", city: "г. Алматы", year: 2025 },
+      { pdf: "/certificates/1/7.pdf", course: "Навигационная имплатанция без догадок - только точный результат", city: "Астана", year: 2022, rotate: 270 },
+      { pdf: "/certificates/1/8.pdf", course: "Имлпатанция. Мягкие ткани. Начало.", city: "Алматы", year: 2023 },
+      { pdf: "/certificates/1/9.pdf", course: "Основы имплантологического лечения и мягкотканной аугментации", city: "Астана", year: 2024 },
+      { pdf: "/certificates/1/10.pdf", course: "Методы закрытия рецессий десны", city: "Алматы", year: 2024, rotate: 270 },
+      { pdf: "/certificates/1/11.pdf", course: "Immediate implant placement in compromised cases. B2S Technique", city: "Алматы", year: 2026, rotate: 270 },
     ],
   },
   {

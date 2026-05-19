@@ -64,7 +64,7 @@ function DoctorCard({
           }}
         >
           <Image
-            src={`/doctor/${doctor.id}.png`}
+            src={`/doctor/${doctor.id}.${doctor.imageExt ?? "png"}`}
             alt={doctor.name}
             fill
             style={{
@@ -85,23 +85,25 @@ function DoctorCard({
             }}
           />
           {/* Experience badge */}
-          <div
-            style={{
-              position: "absolute",
-              top: "16px",
-              right: "16px",
-              background: "rgba(79,110,247,0.9)",
-              borderRadius: "6px",
-              padding: "4px 10px",
-            }}
-          >
-            <span
-              className="font-sans font-semibold"
-              style={{ fontSize: "12px", color: "#fff" }}
+          {(doctor.experience > 0 || doctor.experienceLabel) && (
+            <div
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                background: "rgba(79,110,247,0.9)",
+                borderRadius: "6px",
+                padding: "4px 10px",
+              }}
             >
-              {doctor.experience} лет
-            </span>
-          </div>
+              <span
+                className="font-sans font-semibold"
+                style={{ fontSize: "12px", color: "#fff" }}
+              >
+                {doctor.experienceLabel ?? `${doctor.experience} лет`}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Info */}
@@ -202,10 +204,17 @@ export default function Doctors() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {DOCTORS.map((doctor, i) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          {DOCTORS.slice(0, 4).map((doctor, i) => (
             <DoctorCard key={doctor.id} doctor={doctor} index={i} />
           ))}
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="hidden lg:block" />
+          {DOCTORS.slice(4).map((doctor, i) => (
+            <DoctorCard key={doctor.id} doctor={doctor} index={i + 4} />
+          ))}
+          <div className="hidden lg:block" />
         </div>
       </div>
     </section>

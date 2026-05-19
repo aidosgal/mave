@@ -107,25 +107,27 @@ export default async function DoctorPage({
                 {doctor.name}
               </h1>
 
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  background: "rgba(79,110,247,0.12)",
-                  border: "1px solid rgba(79,110,247,0.3)",
-                  borderRadius: "6px",
-                  padding: "8px 16px",
-                  marginBottom: "28px",
-                }}
-              >
-                <span
-                  className="font-sans font-semibold"
-                  style={{ fontSize: "13px", color: "#4F6EF7" }}
+              {(doctor.experience > 0 || doctor.experienceLabel) && (
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    background: "rgba(79,110,247,0.12)",
+                    border: "1px solid rgba(79,110,247,0.3)",
+                    borderRadius: "6px",
+                    padding: "8px 16px",
+                    marginBottom: "28px",
+                  }}
                 >
-                  {doctor.experience} лет опыта
-                </span>
-              </div>
+                  <span
+                    className="font-sans font-semibold"
+                    style={{ fontSize: "13px", color: "#4F6EF7" }}
+                  >
+                    {doctor.experienceLabel ?? `${doctor.experience} лет опыта`}
+                  </span>
+                </div>
+              )}
 
               <p
                 className="font-sans leading-relaxed mb-8"
@@ -166,7 +168,7 @@ export default async function DoctorPage({
               >
                 <div style={{ position: "relative", paddingTop: "120%" }}>
                   <Image
-                    src={`/doctor/${doctor.id}.png`}
+                    src={`/doctor/${doctor.id}.${doctor.imageExt ?? "png"}`}
                     alt={doctor.name}
                     fill
                     style={{ objectFit: "cover", objectPosition: "top center" }}

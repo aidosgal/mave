@@ -19,8 +19,8 @@ const ITEMS = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 3 L20 8 L20 18 C20 22 17 25 14 26 C11 25 8 22 8 18 L8 8 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M11 15 L13 17 L17 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14 2 L25 7 L25 17 C25 22 20.5 25.5 14 27 C7.5 25.5 3 22 3 17 L3 7 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M10 15 L13 18 L18 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     title: "Команда экспертов",

@@ -187,6 +187,103 @@ export default async function DoctorPage({
         </div>
       </section>
 
+      {/* About */}
+      {doctor.about && (
+        <section style={{ padding: "80px 0 0" }}>
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="flex items-center gap-2 mb-4">
+              <span style={{ color: "#00E5C3", fontSize: "8px" }}>●</span>
+              <span
+                className="font-sans font-medium tracking-[0.18em] uppercase"
+                style={{ fontSize: "11px", color: "#4F6EF7" }}
+              >
+                О враче
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+              <div className="lg:col-span-7">
+                <h2
+                  className="font-display font-black mb-8"
+                  style={{
+                    fontSize: "clamp(28px, 3.5vw, 42px)",
+                    lineHeight: "1.05",
+                    color: "#0D0E1A",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Профессиональный{" "}
+                  <span style={{ color: "#4F6EF7" }}>путь</span>
+                </h2>
+                <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                  {doctor.about.split("\n\n").filter(Boolean).map((para, i) => (
+                    <p
+                      key={i}
+                      className="font-sans leading-relaxed"
+                      style={{ fontSize: "15px", color: i === 0 ? "#0D0E1A" : "#4A4D6A", fontWeight: i === 0 ? 600 : 400 }}
+                    >
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key facts sidebar */}
+              <div className="lg:col-span-5">
+                <div
+                  style={{
+                    background: "#181A33",
+                    borderRadius: "20px",
+                    padding: "36px",
+                    position: "sticky",
+                    top: "100px",
+                  }}
+                >
+                  <p
+                    className="font-sans font-semibold mb-6"
+                    style={{ fontSize: "11px", color: "#4F6EF7", letterSpacing: "0.15em", textTransform: "uppercase" }}
+                  >
+                    Ключевые направления
+                  </p>
+                  {[
+                    "Удаление сложных зубов мудрости",
+                    "Дентальная имплантация",
+                    "Костная пластика",
+                    "Протезирование",
+                    "All-on-4 / All-on-6",
+                    "Комплексная реабилитация",
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        padding: "12px 0",
+                        borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "6px",
+                          height: "6px",
+                          borderRadius: "50%",
+                          background: i % 2 === 0 ? "#4F6EF7" : "#00E5C3",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span className="font-sans" style={{ fontSize: "14px", color: "#C8CAD8" }}>
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Certificates */}
       <section style={{ padding: "80px 0 120px" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -216,150 +313,257 @@ export default async function DoctorPage({
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {doctor.certificates.map((cert, i) => {
-              const yearMatch = cert.match(/\b(20\d{2}|19\d{2})\b/);
-              const year = yearMatch ? yearMatch[0] : null;
-              const title = year ? cert.replace(/,?\s*\b(20\d{2}|19\d{2})\b/, "").trim() : cert;
-              const colors = ["#4F6EF7", "#00E5C3", "#4F6EF7"];
-              const accent = colors[i % colors.length];
-
-              return (
-                <div
-                  key={i}
-                  style={{
-                    background: "#ffffff",
-                    border: "1px solid #E8E7E3",
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    boxShadow: "0 2px 16px -4px rgba(13,14,26,0.07)",
-                  }}
-                >
-                  {/* Certificate header */}
-                  <div
-                    style={{
-                      background: `linear-gradient(135deg, ${accent}14 0%, ${accent}06 100%)`,
-                      borderBottom: `1px solid ${accent}20`,
-                      padding: "28px 28px 24px",
-                      position: "relative",
-                    }}
-                  >
-                    {/* Decorative rings */}
-                    <div
+            {doctor.certificatePdfs && doctor.certificatePdfs.length > 0
+              ? doctor.certificatePdfs.map((pdf, i) => {
+                  const accent = ["#4F6EF7", "#00E5C3", "#4F6EF7"][i % 3];
+                  return (
+                    <a
+                      key={i}
+                      href={pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{
-                        position: "absolute",
-                        top: "-24px",
-                        right: "-24px",
-                        width: "100px",
-                        height: "100px",
-                        borderRadius: "50%",
-                        border: `1px solid ${accent}18`,
-                        pointerEvents: "none",
+                        background: "#ffffff",
+                        border: "1px solid #E8E7E3",
+                        borderRadius: "16px",
+                        overflow: "hidden",
+                        boxShadow: "0 2px 16px -4px rgba(13,14,26,0.07)",
+                        textDecoration: "none",
+                        display: "block",
+                        transition: "transform 0.18s, box-shadow 0.18s",
                       }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "-10px",
-                        right: "-10px",
-                        width: "70px",
-                        height: "70px",
-                        borderRadius: "50%",
-                        border: `1px solid ${accent}12`,
-                        pointerEvents: "none",
-                      }}
-                    />
-
-                    <div className="flex items-start justify-between gap-4">
-                      {/* Medal icon */}
+                      className="hover:-translate-y-1 hover:shadow-xl"
+                    >
+                      {/* Card header */}
                       <div
                         style={{
-                          width: "52px",
-                          height: "52px",
-                          borderRadius: "12px",
-                          background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
-                          border: `1px solid ${accent}30`,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
+                          background: `linear-gradient(135deg, ${accent}14 0%, ${accent}06 100%)`,
+                          borderBottom: `1px solid ${accent}20`,
+                          padding: "28px 28px 24px",
+                          position: "relative",
                         }}
                       >
-                        <svg
-                          width="26"
-                          height="26"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke={accent}
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <circle cx="12" cy="9" r="5" />
-                          <path d="M12 14v7" />
-                          <path d="M9 18l3 3 3-3" />
-                          <path d="M8 9h.01M12 6v.01M16 9h.01" />
-                        </svg>
-                      </div>
-
-                      {/* Year badge */}
-                      {year && (
                         <div
                           style={{
-                            background: accent,
-                            color: "#ffffff",
-                            borderRadius: "6px",
-                            padding: "4px 10px",
-                            flexShrink: 0,
+                            position: "absolute",
+                            top: "-24px",
+                            right: "-24px",
+                            width: "100px",
+                            height: "100px",
+                            borderRadius: "50%",
+                            border: `1px solid ${accent}18`,
+                            pointerEvents: "none",
                           }}
+                        />
+                        <div className="flex items-start justify-between gap-4">
+                          {/* PDF icon */}
+                          <div
+                            style={{
+                              width: "52px",
+                              height: "52px",
+                              borderRadius: "12px",
+                              background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
+                              border: `1px solid ${accent}30`,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke={accent}
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                              <polyline points="14 2 14 8 20 8" />
+                              <line x1="16" y1="13" x2="8" y2="13" />
+                              <line x1="16" y1="17" x2="8" y2="17" />
+                              <polyline points="10 9 9 9 8 9" />
+                            </svg>
+                          </div>
+                          {/* Number badge */}
+                          <div
+                            style={{
+                              background: accent,
+                              color: "#ffffff",
+                              borderRadius: "6px",
+                              padding: "4px 10px",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <span className="font-display font-black" style={{ fontSize: "15px" }}>
+                              №{i + 1}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card body */}
+                      <div style={{ padding: "24px 28px 28px" }}>
+                        <p
+                          className="font-display font-semibold mb-4"
+                          style={{ fontSize: "16px", color: "#0D0E1A", lineHeight: "1.45", letterSpacing: "-0.01em" }}
                         >
-                          <span className="font-display font-black" style={{ fontSize: "15px" }}>
-                            {year}
+                          Сертификат №{i + 1}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke={accent}
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                          </svg>
+                          <span
+                            className="font-sans font-medium"
+                            style={{ fontSize: "12px", color: accent }}
+                          >
+                            Открыть сертификат
                           </span>
                         </div>
-                      )}
-                    </div>
-                  </div>
+                      </div>
+                    </a>
+                  );
+                })
+              : doctor.certificates.map((cert, i) => {
+                  const yearMatch = cert.match(/\b(20\d{2}|19\d{2})\b/);
+                  const year = yearMatch ? yearMatch[0] : null;
+                  const title = year ? cert.replace(/,?\s*\b(20\d{2}|19\d{2})\b/, "").trim() : cert;
+                  const colors = ["#4F6EF7", "#00E5C3", "#4F6EF7"];
+                  const accent = colors[i % colors.length];
 
-                  {/* Certificate body */}
-                  <div style={{ padding: "24px 28px 28px" }}>
-                    <p
-                      className="font-display font-semibold mb-4"
+                  return (
+                    <div
+                      key={i}
                       style={{
-                        fontSize: "16px",
-                        color: "#0D0E1A",
-                        lineHeight: "1.45",
-                        letterSpacing: "-0.01em",
+                        background: "#ffffff",
+                        border: "1px solid #E8E7E3",
+                        borderRadius: "16px",
+                        overflow: "hidden",
+                        boxShadow: "0 2px 16px -4px rgba(13,14,26,0.07)",
                       }}
                     >
-                      {title}
-                    </p>
-
-                    {/* Verified badge */}
-                    <div className="flex items-center gap-2">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={accent}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                      <div
+                        style={{
+                          background: `linear-gradient(135deg, ${accent}14 0%, ${accent}06 100%)`,
+                          borderBottom: `1px solid ${accent}20`,
+                          padding: "28px 28px 24px",
+                          position: "relative",
+                        }}
                       >
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                      </svg>
-                      <span
-                        className="font-sans font-medium"
-                        style={{ fontSize: "12px", color: accent }}
-                      >
-                        Подтверждено
-                      </span>
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "-24px",
+                            right: "-24px",
+                            width: "100px",
+                            height: "100px",
+                            borderRadius: "50%",
+                            border: `1px solid ${accent}18`,
+                            pointerEvents: "none",
+                          }}
+                        />
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "-10px",
+                            right: "-10px",
+                            width: "70px",
+                            height: "70px",
+                            borderRadius: "50%",
+                            border: `1px solid ${accent}12`,
+                            pointerEvents: "none",
+                          }}
+                        />
+                        <div className="flex items-start justify-between gap-4">
+                          <div
+                            style={{
+                              width: "52px",
+                              height: "52px",
+                              borderRadius: "12px",
+                              background: `linear-gradient(135deg, ${accent}22, ${accent}0a)`,
+                              border: `1px solid ${accent}30`,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexShrink: 0,
+                            }}
+                          >
+                            <svg
+                              width="26"
+                              height="26"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke={accent}
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <circle cx="12" cy="9" r="5" />
+                              <path d="M12 14v7" />
+                              <path d="M9 18l3 3 3-3" />
+                              <path d="M8 9h.01M12 6v.01M16 9h.01" />
+                            </svg>
+                          </div>
+                          {year && (
+                            <div
+                              style={{
+                                background: accent,
+                                color: "#ffffff",
+                                borderRadius: "6px",
+                                padding: "4px 10px",
+                                flexShrink: 0,
+                              }}
+                            >
+                              <span className="font-display font-black" style={{ fontSize: "15px" }}>
+                                {year}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div style={{ padding: "24px 28px 28px" }}>
+                        <p
+                          className="font-display font-semibold mb-4"
+                          style={{ fontSize: "16px", color: "#0D0E1A", lineHeight: "1.45", letterSpacing: "-0.01em" }}
+                        >
+                          {title}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke={accent}
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                          </svg>
+                          <span className="font-sans font-medium" style={{ fontSize: "12px", color: accent }}>
+                            Подтверждено
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
           </div>
 
           {/* CTA */}

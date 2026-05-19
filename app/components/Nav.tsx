@@ -49,20 +49,23 @@ export default function Nav() {
           ))}
         </div>
 
-        <button
+        <a
+          href="https://wa.me/77473674734"
+          target="_blank"
+          rel="noopener noreferrer"
           className="font-sans font-medium text-[14px] text-white px-6 py-3 rounded-[6px] transition-all duration-200"
-          style={{ background: "#4F6EF7" }}
+          style={{ background: "#4F6EF7", display: "inline-block" }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#3d5ce8";
-            e.currentTarget.style.transform = "scale(1.02)";
+            (e.currentTarget as HTMLElement).style.background = "#3d5ce8";
+            (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "#4F6EF7";
-            e.currentTarget.style.transform = "scale(1)";
+            (e.currentTarget as HTMLElement).style.background = "#4F6EF7";
+            (e.currentTarget as HTMLElement).style.transform = "scale(1)";
           }}
         >
           Записаться
-        </button>
+        </a>
       </div>
     </nav>
   );

@@ -52,7 +52,7 @@ export default function Hero() {
                 className="font-sans font-medium tracking-[0.18em] uppercase"
                 style={{ fontSize: "11px", color: "#4F6EF7" }}
               >
-                Стоматологическая клиника · Алматы
+                Стоматологическая клиника · Карагандa
               </span>
             </div>
 
@@ -103,25 +103,29 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
               style={{ animation: "fade-up 0.8s ease 0.8s both" }}
             >
-              <button
+              <a
+                href="https://wa.me/77473674734"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-sans font-medium text-white transition-all duration-200"
                 style={{
                   background: "#4F6EF7",
                   fontSize: "15px",
                   padding: "16px 32px",
                   borderRadius: "6px",
+                  display: "inline-block",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#3d5ce8";
-                  e.currentTarget.style.transform = "scale(1.02)";
+                  (e.currentTarget as HTMLElement).style.background = "#3d5ce8";
+                  (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#4F6EF7";
-                  e.currentTarget.style.transform = "scale(1)";
+                  (e.currentTarget as HTMLElement).style.background = "#4F6EF7";
+                  (e.currentTarget as HTMLElement).style.transform = "scale(1)";
                 }}
               >
                 Записаться на приём
-              </button>
+              </a>
               <button
                 className="font-sans font-medium transition-all duration-200"
                 style={{

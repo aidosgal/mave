@@ -389,19 +389,22 @@ export default async function DoctorPage({
               Оставьте заявку — мы свяжемся с вами в течение 30 минут и подберём
               удобное время.
             </p>
-            <button
+            <a
+              href="https://wa.me/77473674734"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-sans font-medium text-white"
               style={{
                 background: "#4F6EF7",
                 fontSize: "15px",
                 padding: "16px 40px",
                 borderRadius: "6px",
-                border: "none",
+                display: "inline-block",
                 cursor: "pointer",
               }}
             >
               Записаться на приём
-            </button>
+            </a>
           </div>
         </div>
       </section>

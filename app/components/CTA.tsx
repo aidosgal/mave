@@ -18,8 +18,8 @@ function useScrollReveal(threshold = 0.15) {
 const infoCards = [
   {
     label: "Адрес",
-    value: "ул. Абая 12, этаж 3",
-    sub: "Алматы, Казахстан",
+    value: "ул. Ерубаева 69",
+    sub: "Карагандa, Казахстан",
     icon: "📍",
   },
   {
@@ -30,7 +30,7 @@ const infoCards = [
   },
   {
     label: "Телефон",
-    value: "+7 (700) 123-45-67",
+    value: "+7 (747) 367-47-34",
     sub: "Звонок бесплатный",
     icon: "📞",
   },
@@ -111,11 +111,14 @@ export default function CTA() {
               maxWidth: "480px",
             }}
           >
-            Первичная консультация бесплатно.
+            Первичная консультация 2000 ₸.
             Мы перезвоним в течение 15 минут.
           </p>
 
-          <button
+          <a
+            href="https://wa.me/77473674734"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-sans font-medium text-white transition-all duration-200 mb-10"
             style={{
               background: "#4F6EF7",
@@ -125,26 +128,28 @@ export default function CTA() {
               display: "inline-block",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#3d5ce8";
-              e.currentTarget.style.transform = "scale(1.03)";
+              (e.currentTarget as HTMLElement).style.background = "#3d5ce8";
+              (e.currentTarget as HTMLElement).style.transform = "scale(1.03)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#4F6EF7";
-              e.currentTarget.style.transform = "scale(1)";
+              (e.currentTarget as HTMLElement).style.background = "#4F6EF7";
+              (e.currentTarget as HTMLElement).style.transform = "scale(1)";
             }}
           >
             Записаться на приём
-          </button>
+          </a>
 
           <div>
             <a
-              href="tel:+77001234567"
+              href="https://wa.me/77473674734"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-sans transition-colors duration-200"
               style={{ fontSize: "15px", color: "#8B8FA8" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "#8B8FA8")}
             >
-              +7 (700) 123-45-67
+              +7 (747) 367-47-34
             </a>
           </div>
         </div>
@@ -155,11 +160,13 @@ export default function CTA() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
         >
           <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
-            © 2025 Mavi Dental. Все права защищены.
+            © 2026 Mavi clinic. Все права защищены.
           </p>
           <div className="flex items-center gap-6">
             <a
-              href="#"
+              href="https://www.instagram.com/mavi_clinic_karaganda"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-sans transition-colors duration-200"
               style={{ fontSize: "13px", color: "#8B8FA8" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
@@ -168,7 +175,9 @@ export default function CTA() {
               Instagram
             </a>
             <a
-              href="#"
+              href="https://wa.me/77473674734"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-sans transition-colors duration-200"
               style={{ fontSize: "13px", color: "#8B8FA8" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
@@ -177,7 +186,7 @@ export default function CTA() {
               WhatsApp
             </a>
             <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8" }}>
-              Алматы, ул. Абая 12, этаж 3
+              Карагандa, ул. Ерубаева 69
             </p>
           </div>
         </div>

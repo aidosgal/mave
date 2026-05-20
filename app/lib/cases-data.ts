@@ -41,18 +41,18 @@ export const CASES: CaseData[] = [
         ],
       },
       {
-        label: "Десна в процессе заживления",
-        slug: "in_progress",
-        images: [
-          { src: "/cases/1/in_progress/1.png", alt: "Десна в процессе заживления" },
-        ],
-      },
-      {
         label: "С временными",
         slug: "temporal",
         images: [
           { src: "/cases/1/temporal/1.png", alt: "С временными коронками — вид 1" },
           { src: "/cases/1/temporal/2.png", alt: "С временными коронками — вид 2" },
+        ],
+      },
+      {
+        label: "Десна в процессе заживления",
+        slug: "in_progress",
+        images: [
+          { src: "/cases/1/in_progress/1.png", alt: "Десна в процессе заживления" },
         ],
       },
       {

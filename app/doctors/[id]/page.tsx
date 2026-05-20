@@ -248,14 +248,7 @@ export default async function DoctorPage({
                   >
                     Ключевые направления
                   </p>
-                  {[
-                    "Удаление сложных зубов мудрости",
-                    "Дентальная имплантация",
-                    "Костная пластика",
-                    "Протезирование",
-                    "All-on-4 / All-on-6",
-                    "Комплексная реабилитация",
-                  ].map((item, i) => (
+                  {(doctor.keyDirections ?? []).map((item, i, arr) => (
                     <div
                       key={i}
                       style={{
@@ -263,7 +256,7 @@ export default async function DoctorPage({
                         alignItems: "center",
                         gap: "12px",
                         padding: "12px 0",
-                        borderBottom: i < 5 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                        borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
                       }}
                     >
                       <div

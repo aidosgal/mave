@@ -41,7 +41,7 @@ export const CASES: CaseData[] = [
         ],
       },
       {
-        label: "С временными",
+        label: "Фиксация временных зубов на третий день",
         slug: "temporal",
         images: [
           { src: "/cases/1/temporal/1.png", alt: "С временными коронками — вид 1" },

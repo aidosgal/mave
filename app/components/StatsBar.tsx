@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 
 const STATS = [
   { value: 98, suffix: "%", label: "довольных пациентов" },
-  { value: 12, suffix: "+", label: "лет на рынке" },
-  { value: 500, suffix: "+", label: "успешных имплантаций" },
-  { value: 15, suffix: "", label: "врачей-специалистов" },
+  { value: 24, suffix: "+", label: "лет на рынке" },
+  { value: 5000, suffix: "+", label: "успешных имплантаций" },
+  { value: 6, suffix: "", label: "врачей-специалистов" },
 ];
 
 function useCounter(target: number, duration = 1800, active = false) {
@@ -48,12 +48,12 @@ function StatItem({ value, suffix, label }: (typeof STATS)[number]) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center lg:items-start px-4 py-7 sm:px-8 sm:py-10"
+      className="flex flex-col items-center lg:items-start px-4 py-7 sm:px-8 sm:py-10 overflow-hidden min-w-0"
     >
       <span
         className="font-display font-black leading-none tracking-tight"
         style={{
-          fontSize: "clamp(36px, 6vw, 100px)",
+          fontSize: "clamp(28px, 4vw, 64px)",
           color: "#0D0E1A",
           opacity: active ? 1 : 0,
           transform: active ? "translateY(0)" : "translateY(16px)",

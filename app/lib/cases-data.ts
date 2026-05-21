@@ -129,6 +129,7 @@ export const CASES: CaseData[] = [
         slug: "front",
         images: [
           { src: "/cases/3/front/1.png", alt: "Процесс лечения — вид спереди" },
+          { src: "/cases/3/front/2.png", alt: "Процесс лечения — вид спереди" },
         ],
       },
       {
@@ -136,6 +137,7 @@ export const CASES: CaseData[] = [
         slug: "left",
         images: [
           { src: "/cases/3/left/1.png", alt: "Процесс лечения — вид сбоку" },
+          { src: "/cases/3/left/2.png", alt: "Процесс лечения — вид сбоку" },
         ],
       },
     ],

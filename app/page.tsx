@@ -14,7 +14,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <StatsBar />
-      <Services />
+<Services />
       <Differentiators />
       <Cases />
       <Doctors />

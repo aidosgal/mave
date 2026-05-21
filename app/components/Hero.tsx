@@ -35,8 +35,8 @@ export default function Hero() {
         }}
       />
 
-      {/* Nav spacer */}
-      <div className="h-20" />
+      {/* Nav spacer — nav (80px) + ticker (~38px) */}
+      <div className="h-[118px]" />
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center">
@@ -107,7 +107,7 @@ export default function Hero() {
                 href="https://wa.me/77473674734"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans font-medium text-white transition-all duration-200"
+                className="font-sans font-medium text-white transition-all duration-200 text-center"
                 style={{
                   background: "#4F6EF7",
                   fontSize: "15px",

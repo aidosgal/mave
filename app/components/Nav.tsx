@@ -2,6 +2,71 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+const TICKER_ITEMS = [
+  { label: "Имплантация зубов", price: "от 80 000 ₸" },
+  { label: "All-on-4", price: "820 000 ₸" },
+];
+
+function Ticker() {
+  return (
+    <div style={{ background: "#4F6EF7", overflow: "hidden", padding: "9px 0" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "max-content",
+          animation: "marquee 22s linear infinite",
+        }}
+      >
+        {[0, 1].map((copy) => (
+          <span
+            key={copy}
+            style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}
+            aria-hidden={copy === 1 ? true : undefined}
+          >
+            {Array.from({ length: 8 }, (_, i) => {
+              const item = TICKER_ITEMS[i % TICKER_ITEMS.length];
+              return (
+                <span key={i} style={{ display: "inline-flex", alignItems: "center" }}>
+                  <span
+                    className="font-sans"
+                    style={{ fontSize: "13px", color: "rgba(255,255,255,0.7)", whiteSpace: "nowrap" }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="font-sans font-bold"
+                    style={{ fontSize: "13px", color: "#ffffff", whiteSpace: "nowrap", marginLeft: "8px" }}
+                  >
+                    {item.price}
+                  </span>
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "4px",
+                      height: "4px",
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.35)",
+                      margin: "0 40px",
+                      flexShrink: 0,
+                    }}
+                  />
+                </span>
+              );
+            })}
+          </span>
+        ))}
+      </div>
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -12,8 +77,10 @@ export default function Nav() {
   }, []);
 
   return (
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <Ticker />
     <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="transition-all duration-300"
       style={{
         background: scrolled ? "rgba(24,26,51,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
@@ -68,5 +135,6 @@ export default function Nav() {
         </a>
       </div>
     </nav>
+    </div>
   );
 }

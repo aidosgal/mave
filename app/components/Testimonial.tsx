@@ -17,40 +17,40 @@ function useScrollReveal(threshold = 0.15) {
 
 const reviews = [
   {
-    initial: "Д",
-    name: "Дмитрий Ковалёв",
-    procedure: "Отбеливание зубов",
-    text: "Уже через час улыбка стала на несколько тонов светлее. Врачи объяснили каждый шаг процедуры — никаких сюрпризов.",
+    initial: "В",
+    name: "Виктория Курмалеева",
+    procedure: "Установка коронки",
+    text: "От всей души благодарю клинику за профессионализм и тёплое отношение. Врач Гамара Бахмановна — очень внимательная и чуткая, лечение максимально комфортное. Дидар Накенович установил коронку идеально. Теперь только к вам!",
   },
   {
-    initial: "З",
-    name: "Зарина Нурланова",
-    procedure: "Брекеты",
-    text: "Год лечения — и результат потрясающий. Команда всегда на связи, отвечают на любые вопросы быстро.",
+    initial: "S",
+    name: "Sergey Lapkin",
+    procedure: "Удаление зуба",
+    text: "Рекомендую клинику всем! Доктор Саидин Небиевич — мастер своего дела, удаление зуба прошло абсолютно безболезненно. Всё супер и цены приемлемые.",
   },
   {
-    initial: "М",
-    name: "Михаил Петров",
-    procedure: "Протезирование",
-    text: "Профессиональный подход с первого визита. Мне сделали красивую улыбку — именно то, о чём я мечтал.",
+    initial: "R",
+    name: "Roza Suleimenova",
+    procedure: "Общая стоматология",
+    text: "Очень хорошая клиника, уже три года хожу сюда. Вежливое отношение к клиентам, уютная атмосфера.",
+  },
+  {
+    initial: "E",
+    name: "E-ONE-OFF",
+    procedure: "Общая стоматология",
+    text: "Высококлассный сервис, пожалуй, лучший в городе. Всегда слышат и заботятся о клиенте, начиная с первого звонка и на протяжении всего приёма. Рекомендую от души!",
+  },
+  {
+    initial: "A",
+    name: "Ann Avi",
+    procedure: "Удаление зубов мудрости, брекеты",
+    text: "В восторге от профессионализма специалистов! Удаление зубов мудрости у доктора Сидина Набиевича — на высшем уровне. Брекеты у доктора Мушвига Афатовича — шикарный результат. Теперь эта клиника — моя смелая рекомендация всем!",
   },
   {
     initial: "С",
-    name: "Сауле Бекова",
-    procedure: "Детская стоматология",
-    text: "Дочь раньше боялась врачей, а теперь сама просится на приём! Детский кабинет — просто волшебство.",
-  },
-  {
-    initial: "Р",
-    name: "Руслан Ахметов",
-    procedure: "Имплантация",
-    text: "Восстановление прошло без осложнений. Полный контроль на каждом этапе — чувствую себя уверенно.",
-  },
-  {
-    initial: "А",
-    name: "Анна Соколова",
-    procedure: "Виниры",
-    text: "Виниры выглядят абсолютно натурально. Несколько подруг уже спросили, всегда ли у меня такая улыбка.",
+    name: "Севинч Ахмедова",
+    procedure: "Удаление зубов мудрости",
+    text: "Удалила два зуба мудрости у хирурга Мушвига Афатоглы — процедуры прошли абсолютно безболезненно, отёка практически не было. Самые лучшие специалисты!",
   },
 ];
 
@@ -97,54 +97,53 @@ export default function Testimonial() {
 
         {/* Featured quote */}
         <blockquote
-          className="font-display font-semibold italic"
-          style={{
-            fontSize: "clamp(22px, 3.5vw, 42px)",
-            color: "#0D0E1A",
-            lineHeight: "1.25",
-            letterSpacing: "-0.01em",
-            maxWidth: "900px",
-            marginBottom: "48px",
-          }}
+            className="font-display font-semibold italic"
+            style={{
+              fontSize: "clamp(22px, 3.5vw, 42px)",
+              color: "#0D0E1A",
+              lineHeight: "1.25",
+              letterSpacing: "-0.01em",
+              maxWidth: "900px",
+              marginBottom: "48px",
+            }}
         >
-          Впервые в жизни я не боялся идти к стоматологу.
+          Не могу отличить пломбу от своего зуба —
           <br />
-          Команда Mavi — это совсем другой уровень заботы
+          вот что значит настоящий профессионализм.
           <br />
-          и профессионализма.
+          Рекомендую от всей души.
         </blockquote>
-
         {/* Featured author */}
         <div className="flex items-center gap-4 mb-20">
           <div
-            className="rounded-full flex items-center justify-center font-display font-bold text-white"
-            style={{
-              width: "48px",
-              height: "48px",
-              background: "linear-gradient(135deg, #4F6EF7, #00E5C3)",
-              fontSize: "18px",
-              flexShrink: 0,
-            }}
+              className="rounded-full flex items-center justify-center font-display font-bold text-white"
+              style={{
+                width: "48px",
+                height: "48px",
+                background: "linear-gradient(135deg, #4F6EF7, #00E5C3)",
+                fontSize: "18px",
+                flexShrink: 0,
+              }}
           >
-            А
+            I
           </div>
           <div>
             <p
-              className="font-sans font-medium"
-              style={{ fontSize: "15px", color: "#0D0E1A" }}
+                className="font-sans font-medium"
+                style={{ fontSize: "15px", color: "#0D0E1A" }}
             >
-              Алия Сейтова
+              Ismail
             </p>
             <p
-              className="font-sans"
-              style={{ fontSize: "13px", color: "#8B8FA8" }}
+                className="font-sans"
+                style={{ fontSize: "13px", color: "#8B8FA8" }}
             >
-              Пациент клиники, имплантация
+              Пациент клиники, лечение кариеса
             </p>
           </div>
           <div className="ml-auto hidden sm:flex gap-1">
             {[...Array(5)].map((_, i) => (
-              <span key={i} style={{ color: "#4F6EF7", fontSize: "16px" }}>★</span>
+                <span key={i} style={{ color: "#4F6EF7", fontSize: "16px" }}>★</span>
             ))}
           </div>
         </div>
@@ -218,6 +217,90 @@ export default function Testimonial() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* 2GIS CTA */}
+        <div className="flex flex-col items-center mt-20 gap-4">
+          <p className="font-sans" style={{ fontSize: "13px", color: "#8B8FA8", letterSpacing: "0.02em" }}>
+            Ещё больше отзывов наших пациентов
+          </p>
+          <a
+            href="https://2gis.kz/karaganda/geo/70000001105620243"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={e => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(-4px)";
+              el.style.boxShadow = "0 20px 56px rgba(11, 191, 111, 0.55), 0 6px 20px rgba(11, 191, 111, 0.3)";
+            }}
+            onMouseLeave={e => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(0)";
+              el.style.boxShadow = "0 10px 40px rgba(11, 191, 111, 0.38), 0 4px 12px rgba(11, 191, 111, 0.2)";
+            }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "20px",
+              background: "linear-gradient(135deg, #0BBF6F 0%, #00D48D 55%, #00BFA0 100%)",
+              borderRadius: "18px",
+              padding: "18px 32px",
+              textDecoration: "none",
+              boxShadow: "0 10px 40px rgba(11, 191, 111, 0.38), 0 4px 12px rgba(11, 191, 111, 0.2)",
+              transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Shine overlay */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%)",
+              borderRadius: "18px",
+              pointerEvents: "none",
+            }} />
+
+            {/* 2GIS logo badge */}
+            <div style={{
+              background: "rgba(255,255,255,0.2)",
+              borderRadius: "12px",
+              padding: "10px 16px",
+              border: "1.5px solid rgba(255,255,255,0.45)",
+              flexShrink: 0,
+              zIndex: 1,
+            }}>
+              <span style={{ fontWeight: 900, fontSize: "18px", color: "white", letterSpacing: "-0.3px" }}>
+                2GIS
+              </span>
+            </div>
+
+            {/* Text */}
+            <div style={{ zIndex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "3px", marginBottom: "5px" }}>
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} style={{ color: "rgba(255,255,255,0.95)", fontSize: "14px" }}>★</span>
+                ))}
+              </div>
+              <p style={{ fontSize: "18px", fontWeight: 700, color: "white", margin: 0, lineHeight: 1.2 }}>
+                Все отзывы о MAVI
+              </p>
+              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.72)", margin: "3px 0 0 0" }}>
+                Открыть на 2GIS
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              style={{ flexShrink: 0, zIndex: 1, opacity: 0.85 }}
+            >
+              <path d="M4.5 11h13M12 5l6 6-6 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

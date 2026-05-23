@@ -320,23 +320,6 @@ function ToothDiagram() {
         <circle cx="164" cy="350" r="4" fill="#4F6EF7" fillOpacity="0.5" />
         <circle cx="236" cy="350" r="4" fill="#4F6EF7" fillOpacity="0.5" />
 
-        {/* Left measurement bar */}
-        <line x1="68" y1="76" x2="88" y2="76" stroke="#4F6EF7" strokeWidth="0.75" strokeOpacity="0.4" />
-        <line x1="68" y1="350" x2="88" y2="350" stroke="#4F6EF7" strokeWidth="0.75" strokeOpacity="0.4" />
-        <line x1="68" y1="76" x2="68" y2="350" stroke="#4F6EF7" strokeWidth="0.5" strokeOpacity="0.3" strokeDasharray="2 4" />
-        <text x="55" y="218" fill="#4F6EF7" fillOpacity="0.45" fontSize="8" fontFamily="monospace" textAnchor="middle" transform="rotate(-90 55 218)">
-          274px
-        </text>
-
-        {/* Tech corner box – top right */}
-        <rect x="338" y="28" width="40" height="40" rx="3" stroke="#4F6EF7" strokeWidth="0.75" strokeOpacity="0.3" fill="none" />
-        <line x1="338" y1="48" x2="378" y2="48" stroke="#4F6EF7" strokeWidth="0.5" strokeOpacity="0.25" />
-        <line x1="358" y1="28" x2="358" y2="68" stroke="#4F6EF7" strokeWidth="0.5" strokeOpacity="0.25" />
-
-        {/* Labels */}
-        <text x="370" y="24" fill="#00E5C3" fillOpacity="0.55" fontSize="7" fontFamily="monospace" textAnchor="end">
-          SCAN:OK
-        </text>
 
         {/* Bottom accent dot */}
         <circle cx="200" cy="430" r="3" fill="#00E5C3" fillOpacity="0.35" />

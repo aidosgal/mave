@@ -87,15 +87,17 @@ export default function Nav() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
-        <Image
-          src="/logo.png"
-          alt="MAVI clinic"
-          width={160}
-          height={54}
-          style={{ width: "auto", height: "44px" }}
-          priority
-        />
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-24">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/logo.png"
+            alt="MAVI clinic"
+            width={200}
+            height={68}
+            style={{ width: "auto", height: "62px" }}
+            priority
+          />
+        </div>
 
         <div className="hidden md:flex items-center gap-8">
           {["Услуги", "О нас", "Врачи", "Отзывы", "Контакты"].map((item) => (

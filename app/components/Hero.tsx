@@ -35,8 +35,8 @@ export default function Hero() {
         }}
       />
 
-      {/* Nav spacer — nav (80px) + ticker (~38px) */}
-      <div className="h-[118px]" />
+      {/* Nav spacer — nav (96px) + ticker (~38px) */}
+      <div className="h-[134px]" />
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center">
@@ -150,10 +150,28 @@ export default function Hero() {
 
           {/* Right – technical tooth diagram (visible on all screen sizes) */}
           <div
-            className="flex items-center justify-center py-4 lg:py-0"
+            className="relative flex items-center justify-center py-4 lg:py-0"
             style={{ animation: "fade-up 1s ease 0.35s both" }}
           >
-            <ToothDiagram />
+            {/* MAVI watermark behind tooth */}
+            <span
+              className="absolute font-display font-black select-none pointer-events-none"
+              style={{
+                fontSize: "clamp(80px, 14vw, 180px)",
+                letterSpacing: "-0.04em",
+                background: "linear-gradient(160deg, rgba(79,110,247,0.18) 0%, rgba(0,229,195,0.08) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                userSelect: "none",
+                zIndex: 0,
+              }}
+            >
+              MAVI
+            </span>
+            <div className="relative z-10">
+              <ToothDiagram />
+            </div>
           </div>
         </div>
       </div>
